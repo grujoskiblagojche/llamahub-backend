@@ -6,6 +6,7 @@ const mainService = require("./service");
 router.post("/members", enrollMember);
 router.get("/winners", getWinners);
 router.get("/landings", getLandings);
+router.get("/challenges", getChallenges);
 
 module.exports = router;
 
@@ -29,5 +30,12 @@ function getLandings(req, res, next) {
   mainService
     .getLandings()
     .then(landings => res.json(landings))
+    .catch(err => next(err));
+}
+
+function getChallenges(req, res, next) {
+  mainService
+    .getChallenges()
+    .then(challenges => res.json(challenges))
     .catch(err => next(err));
 }

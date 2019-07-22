@@ -1,12 +1,14 @@
 const Member = require("./models/Member");
 const Winner = require("./models/Winner");
 const Landing = require("./models/Landing");
+const Challenge = require("./models/Challenge");
 
 module.exports = {
   createMember,
   createWinner,
   getWinners,
-  getLandings
+  getLandings,
+  getChallenges
 };
 
 async function createMember(public, username) {
@@ -45,4 +47,8 @@ async function getWinners() {
 
 async function getLandings() {
   return await Landing.find({});
+}
+
+async function getChallenges() {
+  return await Challenge.find({});
 }
