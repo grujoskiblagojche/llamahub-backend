@@ -4,10 +4,8 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   id: { type: String, required: true },
   place: { type: String, required: true },
-  position: {
-  	x: Number,
-  	y: Number
-  }
+  posX: { type: Number, required: true },
+  posY: { type: Number, required: true }
 });
 
 schema.set("toJSON", { virtuals: true });
