@@ -5,7 +5,8 @@ const schema = new Schema({
   season: Number,
   weeks: [
     {
-      week: Number,
+      week: String,
+      color: String,
       challenges: [
         {
           challenge: String,
