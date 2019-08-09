@@ -7,6 +7,7 @@ const schema = new Schema({
     {
       week: String,
       color: String,
+      accent: String,
       challenges: [
         {
           challenge: String,
