@@ -33,17 +33,8 @@ mongoose
 mongoose.Promise = global.Promise;
 
 //Start server
-const server = app.listen(
-  process.env.NODE_ENV === "production" ? process.env.PORT || 80 : 4000,
-  function() {
+const server = app.listen( process.env.PORT, function() {
     //Schedule giveaway every friday
     scheduleGiveaway();
-
-    console.log(
-      "Listening on port " +
-        server.address().port +
-        " on " +
-        process.env.NODE_ENV
-    );
   }
 );
