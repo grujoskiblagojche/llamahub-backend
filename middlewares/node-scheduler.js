@@ -5,7 +5,7 @@ module.exports = scheduleGiveaway;
 
 function scheduleGiveaway() {
   schedule.scheduleJob(
-    { hour: 20, minute: 50, dayOfWeek: 5, tz: "Europe/Belgrade" },
+    { hour: 13, minute: 30, dayOfWeek: 5, tz: "Europe/Belgrade" },
     function() {
       mainService
         .createWinner()
