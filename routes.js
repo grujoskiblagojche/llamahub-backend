@@ -6,6 +6,7 @@ const mainService = require("./service");
 router.post("/members", enrollMember);
 router.get("/winners", getWinners);
 router.get("/landings", getLandings);
+router.get("/ping", pingServer);
 
 module.exports = router;
 
@@ -30,4 +31,8 @@ function getLandings(req, res, next) {
     .getLandings()
     .then(landings => res.json(landings))
     .catch(err => next(err));
+}
+
+function pingServer(req, res, next) {
+  return res.json({ message: "Server is running!" });
 }
