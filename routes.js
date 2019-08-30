@@ -10,10 +10,10 @@ router.get("/landings", getLandings);
 module.exports = router;
 
 function enrollMember(req, res, next) {
-  const { public, username } = req.body;
+  const { username } = req.body;
 
   mainService
-    .createMember(public, username)
+    .createMember(username)
     .then(() => res.status(201).json({}))
     .catch(err => next(err));
 }

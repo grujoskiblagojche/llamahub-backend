@@ -9,14 +9,11 @@ module.exports = {
   getLandings
 };
 
-async function createMember(public, username) {
+async function createMember(username) {
   const user = await Member.findOne({ u: username });
   if (user) throw "This user already enrolled";
 
-  const newMember = new Member({
-    u: username,
-    p: public
-  });
+  const newMember = new Member({ u: username });
 
   await newMember.save();
 }
@@ -26,10 +23,7 @@ async function createWinner() {
   const random = Math.floor(Math.random() * count);
   const winner = await Member.findOne().skip(random);
 
-  const newWinner = new Winner({
-    u: winner.u,
-    p: winner.p
-  });
+  const newWinner = new Winner({ u: winner.u });
 
   //Delete all members async
   Member.deleteMany({});
