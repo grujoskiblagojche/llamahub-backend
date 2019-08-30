@@ -33,7 +33,7 @@ mongoose
 mongoose.Promise = global.Promise;
 
 //Start server
-const server = app.listen( process.env.PORT, function() {
+const server = app.listen( process.env.MONGODB_URI, function() {
     //Schedule giveaway every friday
     scheduleGiveaway();
   }
