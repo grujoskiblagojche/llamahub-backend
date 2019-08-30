@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const fetch = require("node-fetch");
 const mainService = require("./service");
 
 //User Routes /api/
@@ -11,12 +12,22 @@ router.get("/ping", pingServer);
 module.exports = router;
 
 function enrollMember(req, res, next) {
-  const { username } = req.body;
+  const { public, username } = req.body;
+  if (!username)
+    return res.status(400).json({ message: "You need to fill the username" });
 
-  mainService
-    .createMember(username)
-    .then(() => res.status(201).json({}))
-    .catch(err => next(err));
+  fetch("https://fortniteapi.io/lookup?username=" + username)
+    .then(response => response.json())
+    .then(data => {
+      if (!data.result)
+        return res.status(400).json({ message: "User does not exist" });
+
+      mainService
+        .createMember(username)
+        .then(() => res.status(201).json({}))
+        .catch(err => next(err));
+    })
+    .catch(error => next(error));
 }
 
 function getWinners(req, res, next) {

@@ -5,9 +5,16 @@ module.exports = scheduleGiveaway;
 
 function scheduleGiveaway() {
   schedule.scheduleJob(
-    { hour: 12, dayOfWeek: 5, tz: "Africa/Abidjan" },
+    { hour: 20, minute: 50, dayOfWeek: 5, tz: "Europe/Belgrade" },
     function() {
-      mainService.createWinner.catch(err => console.log(err));
+      mainService
+        .createWinner()
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   );
 }

@@ -20,13 +20,15 @@ async function createMember(username) {
 
 async function createWinner() {
   const count = await Member.count();
+
+  if (count === 0) throw "No enrolled users";
+
   const random = Math.floor(Math.random() * count);
   const winner = await Member.findOne().skip(random);
-
   const newWinner = new Winner({ u: winner.u });
 
   //Delete all members async
-  Member.deleteMany({});
+  await Member.deleteMany({});
 
   await newWinner.save();
 }
